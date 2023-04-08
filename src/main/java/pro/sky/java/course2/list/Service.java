@@ -1,14 +1,17 @@
 package pro.sky.java.course2.list;
 
+import java.util.Collection;
+
 public interface Service {
 
 
-    void addEmployee(Employee employee);
+    Employee addEmployee(String firstName, String lastName);
 
-    void removeEmployee(Employee employee);
+    Employee removeEmployee(String firstName, String lastName);
 
-    String findEmployee(Employee employee);
+    Employee findEmployee(String firstName, String lastName);
 
     String getEmployee(Integer num);
 
+    Collection<Employee> findAll();
 }
