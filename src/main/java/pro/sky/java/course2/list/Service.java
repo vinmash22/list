@@ -11,7 +11,5 @@ public interface Service {
 
     Employee findEmployee(String firstName, String lastName);
 
-    String getEmployee(Integer num);
-
     Collection<Employee> findAll();
 }
