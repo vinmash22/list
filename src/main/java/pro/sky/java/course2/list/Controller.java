@@ -17,13 +17,6 @@ public class Controller {
         this.service = service;
     }
 
-    @GetMapping()
-    public String employee(@RequestParam("number") Integer num) {
-        final String employee;
-        employee = service.getEmployee(num);
-        return employee;
-    }
-
     @GetMapping("add")
     public Employee addEmployee(@RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName) {
         return service.addEmployee(firstName, lastName);
@@ -32,7 +25,6 @@ public class Controller {
     @GetMapping("remove")
     public Employee removeEmployee(@RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName) {
         return service.removeEmployee(firstName, lastName);
-
     }
 
     @GetMapping("find")
@@ -40,8 +32,9 @@ public class Controller {
             lastName) {
         return service.findEmployee(firstName, lastName);
     }
+
     @GetMapping("list")
-    public Collection<Employee> findAll(){
+    public Collection<Employee> findAll() {
         return service.findAll();
     }
 }
