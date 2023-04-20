@@ -8,8 +8,8 @@ public class EmployeeService implements Service {
     Map<String, Employee> employees = new HashMap<>();
 
     @Override
-    public Employee addEmployee(String firstName, String lastName) {
-        Employee employee = new Employee(firstName, lastName);
+    public Employee addEmployee(String firstName, String lastName, int department, double salary) {
+        Employee employee = new Employee(firstName, lastName, department, salary);
         int size = employees.size();
         if (size >= 10) {
             throw new EmployeeStorageIsFullException("Штат сотрудников переполнен");
@@ -22,8 +22,8 @@ public class EmployeeService implements Service {
     }
 
     @Override
-    public Employee removeEmployee(String firstName, String lastName) {
-        Employee employee = new Employee(firstName, lastName);
+    public Employee removeEmployee(String firstName, String lastName, int department, double salary) {
+        Employee employee = new Employee(firstName, lastName, department, salary);
         if (employees.containsKey(employee.getFullName())) {
             return employees.remove(employee.getFullName());
         }
@@ -31,8 +31,8 @@ public class EmployeeService implements Service {
     }
 
     @Override
-    public Employee findEmployee(String firstName, String lastName) {
-        Employee employee = new Employee(firstName, lastName);
+    public Employee findEmployee(String firstName, String lastName, int department, double salary) {
+        Employee employee = new Employee(firstName, lastName, department, salary);
         final Employee employeeFind = employees.get(employee.getFullName());
         if (employeeFind == null) {
             throw new EmployeeNotFoundException("Сотрудник не найден");
