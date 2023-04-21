@@ -7,16 +7,14 @@ public class Employee {
     private final String lastName;
     private int department;
     private double salary;
-    public static int idCounter;
-    private int id;
 
-    public Employee(String firstName, String lastName, int department, double salary)  {
+
+    public Employee(String firstName, String lastName, int department, double salary) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.department = department;
         this.salary = salary;
-        idCounter++;
-        this.id = idCounter;
+
     }
 
     public String getFirstName() {
