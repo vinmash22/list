@@ -1,6 +1,10 @@
 package pro.sky.java.course2.list;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.*;
+
+import static org.apache.commons.lang3.StringUtils.*;
 
 @org.springframework.stereotype.Service
 public class EmployeeService implements Service {
@@ -9,6 +13,9 @@ public class EmployeeService implements Service {
 
     @Override
     public Employee addEmployee(String firstName, String lastName, int department, double salary) {
+        if (!dataChecking (firstName, lastName)){
+            throw new InvalidDataException("Не верные данные");
+        }
         Employee employee = new Employee(firstName, lastName, department, salary);
         int size = employees.size();
         if (size >= 10) {
@@ -23,6 +30,9 @@ public class EmployeeService implements Service {
 
     @Override
     public Employee removeEmployee(String firstName, String lastName, int department, double salary) {
+        if (!dataChecking (firstName, lastName)){
+            throw new InvalidDataException("Не верные данные");
+        }
         Employee employee = new Employee(firstName, lastName, department, salary);
         if (employees.containsKey(employee.getFullName())) {
             return employees.remove(employee.getFullName());
@@ -32,6 +42,9 @@ public class EmployeeService implements Service {
 
     @Override
     public Employee findEmployee(String firstName, String lastName, int department, double salary) {
+        if (!dataChecking (firstName, lastName)){
+            throw new InvalidDataException("Не верные данные");
+        }
         Employee employee = new Employee(firstName, lastName, department, salary);
         final Employee employeeFind = employees.get(employee.getFullName());
         if (employeeFind == null) {
@@ -43,6 +56,10 @@ public class EmployeeService implements Service {
     @Override
     public Collection<Employee> findAll() {
         return Collections.unmodifiableCollection(employees.values());
+    }
+
+    private boolean dataChecking (String firstName, String lastName){
+        return isAlpha(firstName) && isAlpha(lastName);
     }
 }
 
